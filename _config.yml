@@ -15,8 +15,8 @@ future: true
 RSS: false
 weibo_username:     曾书逸
 zhihu_username:     Gungnir
-github_username:    huxpro
-twitter_username:   huxpro
+github_username:    Gungnir66
+#twitter_username:   huxpro
 #facebook_username:  huxpro
 #linkedin_username:  firstname-lastname-idxxxx
 
@@ -112,7 +112,7 @@ friends: [
         title: "Sherry Wu",
         href: "https://xuechundesign.github.io"
     },{
-        title: "Luke 的自留地",
+        title: "Gungnir 的自留地",
         href: "http://hmqk1995.github.io"
     },{
         title: "Ebn's Blog",
@@ -129,8 +129,8 @@ friends: [
     },{
         title: "DHong Say",
         href: "http://dhong.co"
-    },{
-        title: "尹峰以为",
-        href: "http://ingf.github.io/"
+  #  },{
+  #      title: "尹峰以为",
+  #      href: "http://ingf.github.io/"
     }
 ]
