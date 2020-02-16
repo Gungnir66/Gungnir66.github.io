@@ -6,9 +6,6 @@ author: "Hux"
 header-style: text
 hidden: true
 tags:
-  - SF (软件基础)
-  - QC (Quickcheck)
-  - Coq
   - 笔记
 ---
 
@@ -64,7 +61,7 @@ Next, we can define functions that use the overloaded function show like this:
 ```coq
 Definition showOne {A : Type} `{Show A} (a : A) : string :=
   "The value is " ++ show a.
-  
+
 Compute (showOne true).
 Compute (showOne 42).
 
@@ -112,7 +109,7 @@ Notation "x =? y" := (eqb x y) (at level 70).
 
 Instance eqBool : Eq bool :=
   {
-    eqb := fun (b c : bool) ⇒ 
+    eqb := fun (b c : bool) ⇒
        match b, c with
          | true, true ⇒ true
          | true, false ⇒ false
@@ -127,7 +124,7 @@ Instance eqNat : Eq nat :=
   }.
 ```
 
-> Why should we need to define a typeclass for boolean equality when _Coq's propositional equality_ (`x = y`) is completely generic? 
+> Why should we need to define a typeclass for boolean equality when _Coq's propositional equality_ (`x = y`) is completely generic?
 > while it makes sense to _claim_ that two values `x` and `y` are equal no matter what their type is, it is not possible to write a _decidable equality checker_ for arbitrary types. In particular, equality at types like `nat → nat` is undecidable.
 
 `x = y` 返回一个需要去证的 `Prop` (relational) 而非 executable `Fixpoint` (functional)  
@@ -137,7 +134,7 @@ Instance eqNat : Eq nat :=
 Instance eqBoolArrowBool: Eq (bool -> bool) :=
   {
     eqb := fun (f1 f2 : bool -> bool) =>
-      (f1 true) =? (f2 true) && (f1 false) =? (f2 false) 
+      (f1 true) =? (f2 true) && (f1 false) =? (f2 false)
   }.
 
 Compute (id =? id).      (* ==> true *)
@@ -151,13 +148,13 @@ Compute (id =? negb).    (* ==> false *)
 
 ### Parameterized Instances: New Typeclasses from Old
 
-Structural recursion 
+Structural recursion
 
 ```coq
 Instance showPair {A B : Type} `{Show A} `{Show B} : Show (A * B) :=
   {
     show p :=
-      let (a,b) := p in 
+      let (a,b) := p in
         "(" ++ show a ++ "," ++ show b ++ ")"
   }.
 Compute (show (true,42)).
@@ -189,7 +186,7 @@ Instance showList {A : Type} `{Show A} : Show (list A) :=
   {
     show l := append "[" (append (showListAux show l) "]")
   }.
-  
+
 (* I used them though *)
 Fixpoint eqListAux {A : Type} `{Eq A} (l1 l2 : list A) : bool :=
   match l1, l2 with
@@ -232,7 +229,7 @@ class `Eq` is a "super(type)class" of `Ord` (not to be confused with OOP supercl
 This is _Sub-typeclassing_.
 
 ```coq
-Fixpoint listOrdAux {A : Type} `{Ord A} (l1 l2 : list A) : bool := 
+Fixpoint listOrdAux {A : Type} `{Ord A} (l1 l2 : list A) : bool :=
   match l1, l2 with
   | [], _ => true
   | _, [] => false
@@ -273,7 +270,7 @@ Definition showOne1 `{Show A} (a : A) : string :=
 
 Print showOne1.
 (* ==>
-    showOne1 = 
+    showOne1 =
       fun (A : Type) (H : Show A) (a : A) => "The value is " ++ show a
            : forall A : Type, Show A -> A -> string
 
@@ -300,7 +297,7 @@ Definition showOne3 `{H : Show A} (a : A) : string :=
   "The value is " ++ show a.
 ```
 
-甚至 
+甚至
 
 ```coq
 Definition showOne4 `{Show} a : string :=
@@ -308,13 +305,13 @@ Definition showOne4 `{Show} a : string :=
 ```
 
 ```coq
-showOne = 
+showOne =
 fun (A : Type) (H : Show A) (a : A) => "The value is " ++ show a
      : forall A : Type, Show A -> A -> string
 
 Set Printing Implicit.
 
-showOne = 
+showOne =
 fun (A : Type) (H : Show A) (a : A) => "The value is " ++ @show A H a     (* <-- 注意这里 *)
      : forall A : Type, Show A -> A -> string
 ```
@@ -338,7 +335,7 @@ Definition showOne5 a : string :=  (* not generalized *)
 
 #### Free Superclass Instance
 
-``{Ord A}` led Coq to fill in both `A` and `H : Eq A` because it's the superclass of `Ord` (appears as the second argument). 
+``{Ord A}` led Coq to fill in both `A` and `H : Eq A` because it's the superclass of `Ord` (appears as the second argument).
 
 ```coq
 Definition max1 `{Ord A} (x y : A) :=
@@ -347,11 +344,11 @@ Definition max1 `{Ord A} (x y : A) :=
 Set Printing Implicit.
 Print max1.
 (* ==>
-     max1 = 
+     max1 =
        fun (A : Type) (H : Eq A) (H0 : @Ord A H) (x y : A) =>
          if @le A H H0 x y then y else x
 
-   : forall (A : Type) (H : Eq A), 
+   : forall (A : Type) (H : Eq A),
        @Ord A H -> A -> A -> A    
 *)
 Check Ord.
@@ -428,14 +425,14 @@ Compute (r.(px) + r.(py)).
 Coq 中的 Record 其实和 Pair/Product 也是等价：都是 arity 为 2 的 Inductive type：
 
 ```coq
-Inductive Point : Set := 
+Inductive Point : Set :=
   | Build_Point : nat → nat → Point.
 ```
 
 我仿造 `Print px.` 输出的定义模拟了一下：
 
 ```coq
-Inductive Point2 : Set := 
+Inductive Point2 : Set :=
   | Build_Point2 (px2:nat) (py2:nat).
 Definition px2 := fun p : Point2 => let (px, _) := p in px.
 Definition py2 := fun p : Point2 => let (_, py) := p in py.
@@ -450,7 +447,7 @@ Definition r2 : Point2 := {| px2 := 2; py2 := 4 |}.   (* Error: px2 is not a pro
 但是 `{|...|}` 不知道为什么这里会认为 `px2` 不是一个 record projection.
 
 
-> Note that the field names have to be different. Any given field name can belong to only one record type. 
+> Note that the field names have to be different. Any given field name can belong to only one record type.
 > This greatly simplifies type inference!
 
 
@@ -464,7 +461,7 @@ Definition r2 : Point2 := {| px2 := 2; py2 := 4 |}.   (* Error: px2 is not a pro
 Class Show A : Type := { show : A → string }.
 
 Print Show.
-Record Show (A : Type) : Type := 
+Record Show (A : Type) : Type :=
     Build_Show { show : A -> string }
 
 Set Printing All.
@@ -475,14 +472,14 @@ Variant Show (A : Type) : Type :=
 (* to make it more clear... *)
 Inductive Show (A : Type) : Type :=
   | Build_Show : ∀(show : ∀(a : A), string), Show A
-  
+
 (* or more GADT looking, i.e., implicit generalized *)
 Inductive Show (A : Type) : Type :=
   | Build_Show : (A -> string) -> Show A
 ```
 
-Coq actually call a single-field record `Variant`. 
-Well actually, I found it's for any single-constructor `Inductive`ly constructed type. 
+Coq actually call a single-field record `Variant`.
+Well actually, I found it's for any single-constructor `Inductive`ly constructed type.
 You can even use `Variant` nonchangbly with `Inductive` as a keyword...
 
 ```coq
@@ -504,14 +501,14 @@ showNat = {| show := string_of_nat |}
 
 ```coq
 Print show.
-show = 
-  fun (A : Type) (Show0 : Show A) => 
+show =
+  fun (A : Type) (Show0 : Show A) =>
     let (show) := Show0 in show
       : forall A : Type, Show A -> A -> string
 
 Set Printing All.
 Print show.
-show = 
+show =
   fun (A : Type) (Show0 : Show A) =>
     match Show0 return (forall _ : A, string) with
     | Build_Show _ show => show
@@ -534,13 +531,13 @@ eg42 = @show nat showNat 42 : string
 
 different with `Compute`, `Print` 居然还可以这么把所有 implicit argument (after inferred) 都给 print 出来……
 
-type inferrence: 
+type inferrence:
 
 - `show` is expanded to `@show _ _ 42`
 - obviously it's `@show nat __42`
 - obviously it's `@show nat (?H : Show Nat) 42`
 
-Okay now where to find this witness/evidence/instance/record/table/you-name-it `?H` 
+Okay now where to find this witness/evidence/instance/record/table/you-name-it `?H`
 
 > It attempts to find or construct such a value using a _variant of the `eauto` proof search_ procedure that refers to a "hint database" called `typeclass_instances`.
 
@@ -595,14 +592,14 @@ Typeclasses and Proofs
 ### Propositional Typeclass Members
 
 ```coq
-Class EqDec (A : Type) {H : Eq A} := 
-  { 
-    eqb_eq : ∀ x y, x =? y = true ↔ x = y 
+Class EqDec (A : Type) {H : Eq A} :=
+  {
+    eqb_eq : ∀ x y, x =? y = true ↔ x = y
   }.
 ```
 
 ```coq
-Instance eqdecNat : EqDec nat := 
+Instance eqdecNat : EqDec nat :=
   {
     eqb_eq := Nat.eqb_eq
   }.
@@ -613,14 +610,14 @@ Instance eqdecNat : EqDec nat :=
 
 ### Substructures
 
-> Naturally, it is also possible to have typeclass instances as members of other typeclasses: these are called _substructures_. 
+> Naturally, it is also possible to have typeclass instances as members of other typeclasses: these are called _substructures_.
 
 这里的 `relation` 来自 Prelude 不过和 LF-11 用法一样：
 
 ```coq
 Require Import Coq.Relations.Relation_Definitions.
 Class Reflexive (A : Type) (R : relation A) :=
-  { 
+  {
     reflexivity : ∀ x, R x x
   }.
 Class Transitive (A : Type) (R : relation A) :=
@@ -691,7 +688,7 @@ Open Scope monad_scope.
 ```
 
 ```coq
-Class Monad (M : Type → Type) : Type := { 
+Class Monad (M : Type → Type) : Type := {
   ret : ∀ {T : Type}, T → M T ;
   bind : ∀ {T U : Type}, M T → (T → M U) → M U
 }.
@@ -712,7 +709,7 @@ Compare with Haskell:
 class Applicative m => Monad (m :: * -> *) where
   return :: a -> m a
   (>>=) :: m a -> (a -> m b) -> m b
-  
+
 instance Monad Maybe where
   return = Just
   (>>=)  = (>>=)
@@ -793,4 +790,3 @@ The original paper on typeclasses In Coq:
 
 - Matthieu Sozeau and Nicolas Oury. First-Class Type Classes. TPHOLs 2008.
   <https://link.springer.com/chapter/10.1007%2F978-3-540-71067-7_23>
-  

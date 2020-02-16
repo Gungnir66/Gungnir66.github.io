@@ -7,9 +7,8 @@ author:     "Hux"
 header-img: "img/post-bg-js-module.jpg"
 catalog: true
 tags:
-    - 笔记
-    - Web
-    - JavaScript
+    - Fenngb随想录
+
 ---
 
 
