@@ -3,11 +3,11 @@ layout:     post
 title:      "Hello 2015"
 subtitle:   " \"Hello World, Hello Blog\""
 date:       2020-02-16 12:25:30
-author:     "Hux"
-header-img: "img/home-bg.jpg"
+author:     "Fenngb"
+header-img: "img/home-background.jpg"
 catalog: true
 tags:
-    - 生活
+    - 测试
 ---
 
 - This is an Test for blog
