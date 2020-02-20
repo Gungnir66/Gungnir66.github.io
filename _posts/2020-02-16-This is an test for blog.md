@@ -7,9 +7,11 @@ author:     "Fenngb"
 header-img: "img/home-background.jpg"
 catalog: true
 tags:
-    - 测试
+    - 随想
 ---
 
-- This is an Test for blog
+## Start
 
-- If i can see it og GitHub,then i can start with my blog now
+> 种一棵树，最好额时间是十年前，其次是现在。
+
+  准确的说，博客的搭建是2020二月份中旬才开始的,在全国疫情的情况下，家中躺尸的我自fork了别人的代码后，用了一个星期时间才堪堪吃透
