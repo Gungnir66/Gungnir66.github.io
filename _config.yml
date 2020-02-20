@@ -103,9 +103,6 @@ page-mathjax: false
 # Friends
 friends: [
     {
-    #     title: "Su",
-    #     href: "http://su.gallery/"
-    # },{
         title: "somebody",
         href: "http://mida.re/"
     }
