@@ -2,7 +2,7 @@
 layout:     post
 title:      "Hello 2020"
 subtitle:   " \"Hello World, Hello Blog\""
-date:       2020-02-20 20:25:30
+date:       2020-01-20 20:25:30
 author:     "Fenngb"
 header-img: "img/home-background.jpg"
 catalog: true
@@ -12,7 +12,7 @@ tags:
 
 ## Start
 
-> 种一棵树，最好额时间是十年前，其次是现在。
+> 种一棵树，最好的时间是十年前，其次是现在。
 
 *借用此言安慰自己时间还不算太晚*
 
