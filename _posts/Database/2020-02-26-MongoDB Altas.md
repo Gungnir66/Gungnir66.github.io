@@ -13,15 +13,20 @@ tags:
 
 ## Foreword
 > 学习Python学习路径NoSql中的**MongoDB**,尝试一下*MongoDB Cloud*的使用方法
+
+
+
 ---
 
-## 注册or登录
+## Sign in
 [MongoDB Cloud](https://www.mongodb.com/cloud/atlas/signup)
 
 [MongoDB Software下载](https://www.mongodb.com/download-center/community)          ---支持Windows、Linux、iOS
 
-![REGISTER](images/2020/02/register.png)
+![](img/DB/MongoDB/2020_02_26/register.jpg)
+
+第一次使用可注册或由Google账号登录
 ## New Cluster
-21321321231654564564
+
 
 ## 增加新片段
