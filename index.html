@@ -6,7 +6,6 @@ description: "Sometimes ever  Sometimes never"
 {% for post in paginator.posts %}
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
-    <a href="{{disqus_comments}}#disqus_thread" data-disqus-identifier=""></a>     <!-- anchor  here-->
         <h2 class="post-title">
             {{ post.title }}
         </h2>
