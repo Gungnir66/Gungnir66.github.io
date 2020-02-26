@@ -8,6 +8,7 @@ description: "Sometimes ever  Sometimes never"
     <a href="{{ post.url | prepend: site.baseurl }}">
         <h2 class="post-title">
             {{ post.title }}
+            <a href="{{disqus_comments}}#disqus_thread" data-disqus-identifier=""></a>     <!-- anchor  here-->
         </h2>
         {% if post.subtitle %}
         <h3 class="post-subtitle">
@@ -44,3 +45,4 @@ description: "Sometimes ever  Sometimes never"
     {% endif %}
 </ul>
 {% endif %}
+<script id="dsq-count-scr" src="//fenngb.disqus.com/count.js" async></script>
