@@ -1,0 +1,57 @@
+I"m<h2 id="1协程">1.协程</h2>
+<ul>
+  <li>
+    <p>协程（coroutine)是一种用户级的轻量级线程</p>
+  </li>
+  <li>
+    <p>协程拥有自己的寄存器上下文和栈</p>
+  </li>
+  <li>
+    <p>协程调度切换时，将寄存器上下文和栈保存到其他的地方，在切回来的时候，恢复先前保存的寄存器上下文和栈（即协程能保留上一次调用时的状态，每次过程重入时，就相当于进入上一次调用的状态）</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>在并发编程中，协程与线程类似，每个协程表示一个执行单元，有自己的本地数据，与其他协程共享全局数据和其他资源</p>
+</blockquote>
+
+<h2 id="2urlliburllib3库的使用">2.urllib、urllib3库的使用</h2>
+<pre><code class="language-Python">from gevent import monkey
+import gevent
+import urllib
+
+
+def run_task(url):
+    print("Visit----&gt;{}".format(url))
+    try:
+        reponse = urllib.request.urlopen(url)
+        data = reponse.read()
+        print("{0} bytes received from {1}".format(len(data), url))
+    except Exception as e:
+        print(e)
+
+
+if __name__ == "__main__":
+    urls = [
+        "https://github.com/",
+        "https://www.python.org",
+        "https://cnblogs.com/"]
+    greenlets = [gevent.spawn(run_task, url) for url in urls]
+    gevent.joinall(greenlets)
+
+</code></pre>
+<p>结果如下：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>Visit----&gt;https://github.com/
+135408 bytes received from https://github.com/
+Visit----&gt;https://www.python.org
+48936 bytes received from https://www.python.org
+Visit----&gt;https://cnblogs.com/
+48459 bytes received from https://cnblogs.com/
+</pre></td></tr></tbody></table></code></pre></div></div>
+:ET
