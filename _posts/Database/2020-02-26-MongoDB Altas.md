@@ -6,6 +6,7 @@ date: 2020-02-26T15:30:00.000Z
 author: Fenngb
 header-img: img/home-background.jpg
 catalog: true
+comments: true
 tags:
   - Database
   - MongoDB
@@ -23,7 +24,9 @@ tags:
 
 [MongoDB Software下载](https://www.mongodb.com/download-center/community)          ---支持Windows、Linux、iOS
 
-![](img/DB/MongoDB/2020_02_26/register.jpg)
+![Register](img/DB/MongoDB/2020_02_26/register.jpg)
+
+![123](img/404-bg-o.jpg)
 
 第一次使用可注册或由Google账号登录
 ## New Cluster

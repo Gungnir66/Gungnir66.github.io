@@ -6,6 +6,7 @@ date:       2020-01-20 20:25:30
 author:     "Fenngb"
 header-img: "img/home-background.jpg"
 catalog: true
+comments: true
 tags:
     - 随想
 ---
