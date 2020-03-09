@@ -18,8 +18,6 @@ typora-root-url: ..\..
 
 
 
----
-
 ## Sign in
 [MongoDB Cloud](https://www.mongodb.com/cloud/atlas/signup)
 
@@ -29,7 +27,8 @@ typora-root-url: ..\..
 
 
 
-第一次使用可注册或由Google账号登录
+<center>第一次使用可注册或由Google账号登录</center>
+44444444444444444444444444444444444
 ## New Cluster
 
 ## 增加新片段
